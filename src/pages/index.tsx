@@ -2,8 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import { Button } from 'antd'
+import styled from 'styled-components'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const ButtonWrapper = styled.div`
+  .ant-btn-primary{
+    background-color: red;
+  }
+`
 
 export default function Home() {
   return (
@@ -15,6 +23,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <ButtonWrapper>
+          <Button type="primary" onClick={() => {
+            console.log('env', process.env['API_URL_POKE']);
+          }}>hey</Button>
+        </ButtonWrapper>
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
