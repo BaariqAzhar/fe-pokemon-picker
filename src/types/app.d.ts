@@ -1,4 +1,9 @@
 declare module 'app-types' {
+    type Stat = {
+        name?: string
+        point?: number
+    }
+
     type PokemonType = {
         name?: string
         url?: string
@@ -6,6 +11,9 @@ declare module 'app-types' {
         species?: string
         type?: string[]
         ability?: string[]
+        images?: string[]
+        stats?: Stat[]
+        weight?: number
     }
 
     type PokemonTypeType = {

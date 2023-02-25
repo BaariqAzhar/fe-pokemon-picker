@@ -1,3 +1,4 @@
+import beautifyPokemonTypeObj from "@/helper/beautifyPokemonTypeObj";
 import beautifyWord from "@/helper/beautifyWord";
 import { API_LIMIT_POKE_LIST, API_URL_POKE } from "@/helper/constants";
 import getIdByLink, { getTypeIdByLink } from "@/helper/getIdgetIdByLink";
@@ -16,7 +17,6 @@ const HomeContextProvider = ({ children }: HomeContextProviderProps): ReactEleme
     const [state, dispatcher] = useReducer(HomeReducer, initialState);
 
     const fetchPokemonList = async () => {
-        // const baseUrl = `${API_URL_POKE}pokemon/?limit=${API_LIMIT_POKE_LIST}`;
         let baseUrl = `${API_URL_POKE}pokemon/`;
 
         if (state.search) {
@@ -28,15 +28,10 @@ const HomeContextProvider = ({ children }: HomeContextProviderProps): ReactEleme
                 })
                 const pokemons = [];
                 const { data } = await axios.get(baseUrl);
-                const pokemon = {
-                    name: beautifyWord(data?.name || ''),
-                    ability: data?.abilities?.map((item: any) => beautifyWord(item?.ability?.name)),
-                    id: data?.id,
-                    species: beautifyWord(data?.species?.name),
-                    type: data?.types?.map((item: any) => beautifyWord(item?.type?.name)),
-                }
+
+                const pokemon = beautifyPokemonTypeObj(data);
                 pokemons.push(pokemon)
-                return pokemons || []
+                return pokemons
             } catch (error) {
                 console.error(error);
                 return []
@@ -53,17 +48,13 @@ const HomeContextProvider = ({ children }: HomeContextProviderProps): ReactEleme
                     type: TYPE.POKEMONLIST_IS_LOADING,
                     payload: true
                 })
-                let pokemons = [];
+                const pokemons = [];
                 const { data } = await axios.get(baseUrl)
-                pokemons = data.results;
-                for (const key in pokemons) {
-                    const { data } = await axios.get(pokemons?.[key]?.url);
-                    pokemons[key].name = beautifyWord(pokemons?.[key]?.name)
-                    pokemons[key].abilities = data?.abilities;
-                    pokemons[key].id = getIdByLink(pokemons?.[key]?.url);
-                    pokemons[key].species = beautifyWord(data?.species?.name);
-                    pokemons[key].type = data?.types?.map((item: any) => beautifyWord(item?.type?.name));
-                    pokemons[key].ability = data?.abilities?.map((item: any) => beautifyWord(item?.ability?.name))
+                const datas = data?.results;
+                for (const key in datas) {
+                    const { data } = await axios.get(datas?.[key]?.url);
+                    const pokemon = beautifyPokemonTypeObj(data)
+                    pokemons.push(pokemon)
                 }
                 const ascendingPokemons = pokemons.sort(compareAscending)
                 return ascendingPokemons;
