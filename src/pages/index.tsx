@@ -6,7 +6,6 @@ import { APP_NAME } from '@/helper/constants'
 import { Col, Row } from 'antd'
 import Head from 'next/head'
 
-
 export default function Home() {
   return (
     <>

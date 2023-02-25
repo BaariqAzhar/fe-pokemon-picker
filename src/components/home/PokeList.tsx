@@ -57,7 +57,7 @@ const PokeList = () => {
         <Row>
             {pokemonList?.visible?.map((item: any) => {
                 return (
-                    <Col key={item.url} span={24}>
+                    <Col key={item.id} span={24}>
                         <PokemonItem
                             data={item} />
                     </Col>
