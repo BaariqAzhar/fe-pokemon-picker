@@ -34,8 +34,8 @@ const PokeFooter = (): ReactElement => {
                 <ActiveLink href='/'>
                     Home
                 </ActiveLink>
-                <ActiveLink href='/profile'>
-                    Profile
+                <ActiveLink href='/my-collection'>
+                    My Collection
                 </ActiveLink>
             </Col>
         </Row>
