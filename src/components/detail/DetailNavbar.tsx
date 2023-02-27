@@ -19,12 +19,12 @@ const DetailNavbar = () => {
             boxShadow: cssNavbarBoxShadow
         }}>
             <Row gutter={[25, 0]}>
-                <Col span={6}>
+                <Col span={8}>
                     <Button onClick={onClick} block icon={<LeftOutlined />}>
                         Back
                     </Button>
                 </Col>
-                <Col span={18}>
+                <Col span={16}>
                     <Typography.Text style={{ fontSize: 18 }}>
                         Pokemon detail
                     </Typography.Text>

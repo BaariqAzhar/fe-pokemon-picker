@@ -23,7 +23,7 @@ const avatars = [
         id: 2,
         name: 'Tsubomi',
         photo: tsubomi
-    }
+    },
 ]
 
 export default avatars

@@ -54,6 +54,8 @@ const HomeForMobile = () => {
 }
 
 export default function Home() {
+  
+
   const { lg } = Grid.useBreakpoint();
 
   if (lg) {

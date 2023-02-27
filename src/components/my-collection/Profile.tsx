@@ -1,9 +1,11 @@
 import avatars from "@/assets/data/avatars"
 import { cssNavbarBoxShadow } from "@/helper/constants"
 import { EditOutlined, EllipsisOutlined, InfoCircleOutlined } from '@ant-design/icons'
-import { Button, Card, Col, Dropdown, MenuProps, Modal, Row, Segmented, Typography } from "antd"
+import { Button, Card, Col, Dropdown, MenuProps, message, Modal, Row, Segmented, Typography } from "antd"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import CreditsModal from "./CreditsModal"
+import TutorialsModal from "./TutorialsModal"
 
 type SelectAvatarImageProps = {
     avatar: number | string | undefined,
@@ -81,36 +83,42 @@ const AvatarImage = ({ avatar, size = 50 }: AvatarImageProps) => {
     )
 }
 
-const items: MenuProps['items'] = [
-    {
-        key: '1',
-        label: (
-            <>
-                <InfoCircleOutlined />{" "}Info
-            </>
-        ),
-    },
-    {
-        key: '2',
-        label: (
-            <>
-                <InfoCircleOutlined />{" "}Credits
-            </>
-        ),
-    },
-];
 
 const Profile = () => {
-    const [showEditModal, setShowModal] = useState(false)
+    const [showEditModal, setShowModal] = useState<boolean>(false)
+    const [showCredits, setShowCredits] = useState<boolean>(false)
+    const [showTutorials, setShowTutorials] = useState<boolean>(false)
     const [avatar, setAvatar] = useState<number | string | undefined>()
 
     const openEditModal = () => {
         setShowModal(true)
     }
 
+    const handleShowCredits = () => {
+        setShowCredits((prev: boolean) => !prev)
+    }
+
+    const handleShowTutorials = () => {
+        setShowTutorials((prev: boolean) => !prev)
+    }
+
+    const items: MenuProps['items'] = [
+        {
+            key: 'TUTORIALS',
+            icon: <InfoCircleOutlined />,
+            label: "Tutorials",
+            onClick: handleShowTutorials
+        },
+        {
+            key: 'CREDITS',
+            icon: <InfoCircleOutlined />,
+            label: "Credits",
+            onClick: handleShowCredits
+        },
+    ];
+
     useEffect(() => {
         if (localStorage.getItem('AVATAR_ID')) {
-            console.log('masuk');
             const userAvatar = localStorage.getItem('AVATAR_ID')
             setAvatar(Number(userAvatar) || 0)
         }
@@ -152,6 +160,8 @@ const Profile = () => {
             </Card>
 
             <EditModal {...{ showEditModal, setShowModal, avatar, setAvatar }} />
+            <CreditsModal {...{ showCredits, handleShowCredits }} />
+            <TutorialsModal {...{ showTutorials, handleShowTutorials }} />
         </>
     )
 }
