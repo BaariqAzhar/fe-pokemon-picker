@@ -1,9 +1,12 @@
 import HomeContext from "@/context/home/HomeContext"
 import { useContext } from "react"
 import { PokemonType } from 'app-types'
-import { Row, Col, Image, Empty } from 'antd'
+import { Row, Col, Image, Typography, Divider, Button, Card } from 'antd'
 import fallbackImg from "@/assets/img/fallbackImg"
 import { useRouter } from 'next/router'
+import { RightOutlined } from '@ant-design/icons'
+import PokeballIcon from '@/assets/img/pokeball-icon.png'
+import ImageNext from "next/image"
 
 type PokemonItemType = {
     data: PokemonType
@@ -12,33 +15,64 @@ type PokemonItemType = {
 const PokemonItem = ({ data }: PokemonItemType) => {
     const router = useRouter()
 
-    const onClick = () => {
+    const onClickGoToDetail = () => {
         router.push(`/detail/${data?.id}`)
     }
 
     return (
-        <Row onClick={onClick}>
-            <Col span={12}>
-                <Row justify={"end"}>
-                    <Col>
-                        <Image preview={false} alt={fallbackImg} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data?.id}.png`} />
-                    </Col>
-                </Row>
-            </Col>
-            <Col span={12}>
-                <Row>
-                    <Col span={24}>
-                        {data?.name}
-                    </Col>
-                    <Col span={24}>
-                        {data?.type?.toString()}
-                    </Col>
-                    <Col span={24}>
-                        {data?.ability?.toString()}
-                    </Col>
-                </Row>
-            </Col>
-        </Row>
+        <>
+            <Row gutter={[8, 0]}>
+                <Col span={5}>
+                    <Row justify={"end"}>
+                        <Col>
+                            <Image preview={false} alt={fallbackImg} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data?.id}.png`} />
+                        </Col>
+                    </Row>
+                </Col>
+                <Col span={12}>
+                    <Row gutter={[0, 2]}>
+                        <Col span={24}>
+                            <Typography.Text style={{ fontSize: 20 }}>
+                                {data?.name}
+                            </Typography.Text>
+                        </Col>
+                        <Col span={24}>
+                            <Typography.Text ellipsis>
+                                🗄️ {" "}
+                                {data?.type?.toString().replaceAll(',', ', ')}
+                            </Typography.Text>
+                        </Col>
+                        <Col span={24}>
+                            <Typography.Text ellipsis>
+                                🗡️ {" "}
+                                {data?.ability?.toString().replaceAll(',', ', ')}
+                            </Typography.Text>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col span={7}>
+                    <Row gutter={[0, 8]}>
+                        <Col span={24}>
+                            <Row justify="center">
+                                <Col>
+                                    {/* <Card hoverable bodyStyle={{ padding: 2 }}> */}
+                                    <ImageNext style={{ width: 30, height: 'auto' }} src={PokeballIcon} alt="" />
+                                    {/* </Card> */}
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col span={24}>
+                            <Row justify="center">
+                                <Col>
+                                    <Button type="link" onClick={onClickGoToDetail}>Detail <RightOutlined /> </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row >
+            <Divider />
+        </>
     )
 }
 
