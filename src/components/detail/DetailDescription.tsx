@@ -96,7 +96,7 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
                                     </Typography.Text>
                                 </Col>
                                 <Col span={24}>
-                                    {isCaught ? (<Button onClick={onClickRelease}>Release the pokemon</Button>) : (<Button onClick={onClickCatch}>Catch the pokemon</Button>)}
+                                    {isCaught ? (<Button onClick={onClickRelease}>Release the pokemon</Button>) : (<Button type="primary" onClick={onClickCatch}>Catch the pokemon</Button>)}
                                 </Col>
                             </Row>
                         </Col>
