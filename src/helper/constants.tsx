@@ -7,3 +7,6 @@ export const IMAGE_URL_POKE = 'https://raw.githubusercontent.com/PokeAPI/sprites
 
 export const API_URL_POKE = 'https://pokeapi.co/api/v2/';
 export const API_LIMIT_POKE_LIST = 20;
+
+export const cssNavbarBoxShadow = "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+export const cssCardBoxShadow = "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"

@@ -24,9 +24,9 @@ export default function Detail({ pokemon }: DetailProps) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Row justify='center'>
+                <Row justify='center' gutter={[0, 18]}>
                     <Col span={24}>
-                        <DetailNavbar data={pokemon} />
+                        <DetailNavbar />
                     </Col>
                     <Col span={24}>
                         <DetailDescription data={pokemon} />

@@ -6,7 +6,9 @@ import fallbackImg from "@/assets/img/fallbackImg"
 import { useRouter } from 'next/router'
 import { RightOutlined } from '@ant-design/icons'
 import PokeballIcon from '@/assets/img/pokeball-icon.png'
+import PokeballMonochromeIcon from '@/assets/img/pokeball-monochrome-icon.png'
 import ImageNext from "next/image"
+import useIsCaught from "@/helper/useIsCaught"
 
 type PokemonItemType = {
     data: PokemonType
@@ -14,6 +16,8 @@ type PokemonItemType = {
 
 const PokemonItem = ({ data }: PokemonItemType) => {
     const router = useRouter()
+
+    const { isCaught } = useIsCaught(data?.id || 0)
 
     const onClickGoToDetail = () => {
         router.push(`/detail/${data?.id}`)
@@ -55,9 +59,11 @@ const PokemonItem = ({ data }: PokemonItemType) => {
                         <Col span={24}>
                             <Row justify="center">
                                 <Col>
-                                    {/* <Card hoverable bodyStyle={{ padding: 2 }}> */}
-                                    <ImageNext style={{ width: 30, height: 'auto' }} src={PokeballIcon} alt="" />
-                                    {/* </Card> */}
+                                    {isCaught ?
+                                        <ImageNext style={{ width: 30, height: 'auto' }} src={PokeballIcon} alt="" />
+                                        :
+                                        <ImageNext style={{ width: 30, height: 'auto' }} src={PokeballMonochromeIcon} alt="" />
+                                    }
                                 </Col>
                             </Row>
                         </Col>
