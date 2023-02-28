@@ -1,38 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokemon Picker 🎒
 
-## Getting Started
+#### Frontend application to search and collect pokemons from Pokeapi.co.
 
-First, run the development server:
+## Gif
+
+![alt text](https://github.com/BaariqAzhar/be-etfax-test/blob/master/documentation/img/catching.gif?raw=true)
+sc: documentation/img/catching.gif
+
+## Features
+
+In this application “Pokemon Picker” have some features, such as
+
+-   Search, sort & filter pokemon
+-   View detail of pokemon (ability, stats, etc)
+-   Catch pokemon
+-   List caught pokemon
+-   Release pokemon
+-   Select avatar
+-   Explained on Tutorials (my collection > 3 dot icon )
+
+## Result
+
+you could try the Deployed Frontend here [fe-pokemon-picker.vercel.app](https://fe-pokemon-picker.vercel.app/)
+
+-   please inform me, if the server got down, chat me at [linkedin](https://www.linkedin.com/in/baariq-azhar/)
+
+## Run locally
+
+Requirements
+
+```bash
+NodeJs
+```
+
+Clone the project
+
+```bash
+git clone (url)
+```
+
+Go to the project directory
+
+```bash
+cd (folder name)
+```
+
+Run NextJs project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Finally your Pokemon Picker has been launch 🚀🚀🚀
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Tech stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Frontend
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+-   node js
+-   next js
+-   typescript
+-   eslint
+-   prettier
+-   antd
+-   axios
+-   dexie js (connect to browser DB)
+-   jest
+-   etc
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Browser Database
 
-## Learn More
+-   IndexedDB
 
-To learn more about Next.js, take a look at the following resources:
+### Utilities
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   git
+-   github
+-   vscode
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Devops
 
-## Deploy on Vercel
+-   vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Improvement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+With all my lack. Because of the limited time. So there are many features that should be improved in the next progress. Such as:
+
+-   Offline handler
+-   More unit testing
+-   Etc
+
+## Author
+
+[@baariqazhar](https://github.com/BaariqAzhar)
