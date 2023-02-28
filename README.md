@@ -4,7 +4,7 @@
 
 ## Gif
 
-![alt text](https://github.com/BaariqAzhar/be-etfax-test/blob/master/documentation/img/catching.gif?raw=true)
+![alt text](https://github.com/BaariqAzhar/fe-pokemon-picker/blob/main/documentation/img/catching.gif?raw=true)
 sc: documentation/img/catching.gif
 
 ## Features
