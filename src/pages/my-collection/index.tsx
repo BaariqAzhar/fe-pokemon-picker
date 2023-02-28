@@ -1,10 +1,10 @@
-import PokeFooter from "@/components/home/PokeFooter"
-import MyCollectionSection from "@/components/my-collection/MyCollectionSection"
-import Profile from "@/components/my-collection/Profile"
-import { APP_NAME } from "@/helper/constants"
-import useWindowSize from "@/helper/useWindowSize"
-import { Col, Row } from "antd"
-import Head from "next/head"
+import PokeFooter from '@/components/home/PokeFooter';
+import MyCollectionSection from '@/components/my-collection/MyCollectionSection';
+import Profile from '@/components/my-collection/Profile';
+import { APP_NAME } from '@/helper/constants';
+import useWindowSize from '@/helper/useWindowSize';
+import { Col, Row } from 'antd';
+import Head from 'next/head';
 
 const MyCollectionHead = () => {
     return (
@@ -14,11 +14,11 @@ const MyCollectionHead = () => {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-    )
-}
+    );
+};
 
 const MyCollection = () => {
-    const windowSize = useWindowSize()
+    const windowSize = useWindowSize();
 
     return (
         <>
@@ -41,7 +41,7 @@ const MyCollection = () => {
                 </Row>
             </main>
         </>
-    )
-}
+    );
+};
 
-export default MyCollection
+export default MyCollection;

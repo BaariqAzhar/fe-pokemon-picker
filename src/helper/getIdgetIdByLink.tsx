@@ -4,7 +4,7 @@ const getIdByLink = (link: string) => {
         return Number(id);
     }
     return 0;
-}
+};
 
 export const getTypeIdByLink = (link: string) => {
     if (link) {
@@ -12,6 +12,6 @@ export const getTypeIdByLink = (link: string) => {
         return Number(id);
     }
     return 0;
-}
+};
 
 export default getIdByLink;

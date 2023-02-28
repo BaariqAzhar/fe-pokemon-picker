@@ -1,21 +1,20 @@
-import fallbackImg from "@/assets/img/fallbackImg"
-import { cssCardBoxShadow, IMAGE_URL_POKE } from "@/helper/constants"
-import { Button, Card, Col, Image, Row, Typography } from "antd"
-import { PokemonType } from "app-types"
-import { pokemonsTable } from "database.config"
-import { useEffect, useState } from "react"
-import NextImg from "next/image"
-import PokeballIcon from '@/assets/img/pokeball-icon.png'
-import PokeballMonochromeIcon from '@/assets/img/pokeball-monochrome-icon.png'
-import useIsCaught from "@/helper/useIsCaught"
-
+import fallbackImg from '@/assets/img/fallbackImg';
+import { cssCardBoxShadow, IMAGE_URL_POKE } from '@/helper/constants';
+import { Button, Card, Col, Image, Row, Typography } from 'antd';
+import { PokemonType } from 'app-types';
+import { pokemonsTable } from 'database.config';
+import { useEffect, useState } from 'react';
+import NextImg from 'next/image';
+import PokeballIcon from '@/assets/img/pokeball-icon.png';
+import PokeballMonochromeIcon from '@/assets/img/pokeball-monochrome-icon.png';
+import useIsCaught from '@/helper/useIsCaught';
 
 type DetailDescriptionProps = {
-    data: PokemonType
-}
+    data: PokemonType;
+};
 
 const DetailDescription = ({ data }: DetailDescriptionProps) => {
-    const { isCaught, checkIsCaught } = useIsCaught(data?.id || 0)
+    const { isCaught, checkIsCaught } = useIsCaught(data?.id || 0);
 
     const onClickCatch = async (event: any) => {
         const pokemon = {
@@ -24,16 +23,16 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
             ability: JSON.stringify(data?.ability),
             images: JSON.stringify(data?.images),
             stats: JSON.stringify(data?.stats),
-        }
+        };
         try {
             const id = await pokemonsTable.add(pokemon);
             console.info(`A new customer was created with id ${id}`);
         } catch (error) {
             console.error(`Failed to add ${pokemon}: ${error}`);
         } finally {
-            checkIsCaught()
+            checkIsCaught();
         }
-    }
+    };
 
     const onClickRelease = async (event: any) => {
         try {
@@ -42,9 +41,9 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
         } catch (error) {
             console.error(`Failed to release pokemon with id ${data?.id}: ${error}`);
         } finally {
-            checkIsCaught()
+            checkIsCaught();
         }
-    }
+    };
 
     return (
         <Row gutter={[0, 16]}>
@@ -61,24 +60,16 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
                         <Col span={14}>
                             <Row>
                                 <Col span={24}>
-                                    <Typography.Text style={{ fontSize: 20 }}>
-                                        {data?.name}
-                                    </Typography.Text>
+                                    <Typography.Text style={{ fontSize: 20 }}>{data?.name}</Typography.Text>
                                 </Col>
                                 <Col span={24}>
                                     <Typography.Text>🔬 Species: {data?.name}</Typography.Text>
                                 </Col>
                                 <Col span={24}>
-                                    <Typography.Text ellipsis>
-                                        🗄️ {" "}
-                                        {data?.type?.toString().replaceAll(',', ', ')}
-                                    </Typography.Text>
+                                    <Typography.Text ellipsis>🗄️ {data?.type?.toString().replaceAll(',', ', ')}</Typography.Text>
                                 </Col>
                                 <Col span={24}>
-                                    <Typography.Text ellipsis>
-                                        🗡️ {" "}
-                                        {data?.ability?.toString().replaceAll(',', ', ')}
-                                    </Typography.Text>
+                                    <Typography.Text ellipsis>🗡️ {data?.ability?.toString().replaceAll(',', ', ')}</Typography.Text>
                                 </Col>
                             </Row>
                         </Col>
@@ -91,21 +82,25 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
                         <Col span={20}>
                             <Row gutter={[0, 8]}>
                                 <Col span={24}>
-                                    <Typography.Text>
-                                        🎒 My Collection: {isCaught ? <>Yes </> : 'No'}
-                                    </Typography.Text>
+                                    <Typography.Text>🎒 My Collection: {isCaught ? <>Yes </> : 'No'}</Typography.Text>
                                 </Col>
                                 <Col span={24}>
-                                    {isCaught ? (<Button onClick={onClickRelease}>Release the pokemon</Button>) : (<Button type="primary" onClick={onClickCatch}>Catch the pokemon</Button>)}
+                                    {isCaught ? (
+                                        <Button onClick={onClickRelease}>Release the pokemon</Button>
+                                    ) : (
+                                        <Button type="primary" onClick={onClickCatch}>
+                                            Catch the pokemon
+                                        </Button>
+                                    )}
                                 </Col>
                             </Row>
                         </Col>
                         <Col span={4}>
-                            {isCaught ?
+                            {isCaught ? (
                                 <NextImg style={{ width: 50, height: 'auto' }} alt="" src={PokeballIcon} />
-                                :
+                            ) : (
                                 <NextImg style={{ width: 50, height: 'auto' }} alt="" src={PokeballMonochromeIcon} />
-                            }
+                            )}
                         </Col>
                     </Row>
                 </Card>
@@ -124,9 +119,11 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
                                 {data?.stats?.map((item, index) => {
                                     return (
                                         <Col key={index} span={10} offset={1}>
-                                            <Typography.Text >{item?.name}: {item?.point}</Typography.Text>
+                                            <Typography.Text>
+                                                {item?.name}: {item?.point}
+                                            </Typography.Text>
                                         </Col>
-                                    )
+                                    );
                                 })}
                             </Row>
                         </Col>
@@ -147,13 +144,13 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
                                 <Col key={index}>
                                     <Image preview={false} src={item} alt="" fallback={fallbackImg} />
                                 </Col>
-                            )
+                            );
                         })}
                     </Row>
                 </Card>
             </Col>
         </Row>
-    )
-}
+    );
+};
 
-export default DetailDescription
+export default DetailDescription;

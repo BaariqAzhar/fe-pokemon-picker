@@ -1,21 +1,23 @@
-import { cssNavbarBoxShadow } from '@/helper/constants'
-import { LeftOutlined } from '@ant-design/icons'
-import { Button, Card, Col, Row, Typography } from "antd"
-import { useRouter } from 'next/router'
-
+import { cssNavbarBoxShadow } from '@/helper/constants';
+import { LeftOutlined } from '@ant-design/icons';
+import { Button, Card, Col, Row, Typography } from 'antd';
+import { useRouter } from 'next/router';
 
 const DetailNavbar = () => {
-    const router = useRouter()
+    const router = useRouter();
 
     const onClick = () => {
-        router.back()
-    }
+        router.back();
+    };
 
     return (
-        <Card bodyStyle={{ padding: 4 }} style={{
-            background: 'white',
-            boxShadow: cssNavbarBoxShadow
-        }}>
+        <Card
+            bodyStyle={{ padding: 4 }}
+            style={{
+                background: 'white',
+                boxShadow: cssNavbarBoxShadow,
+            }}
+        >
             <Row gutter={[25, 0]}>
                 <Col xs={8} sm={8} md={8} lg={4} xl={4}>
                     <Button onClick={onClick} block icon={<LeftOutlined />}>
@@ -23,13 +25,11 @@ const DetailNavbar = () => {
                     </Button>
                 </Col>
                 <Col span={16}>
-                    <Typography.Text style={{ fontSize: 18 }}>
-                        Pokemon detail
-                    </Typography.Text>
+                    <Typography.Text style={{ fontSize: 18 }}>Pokemon detail</Typography.Text>
                 </Col>
             </Row>
         </Card>
-    )
-}
+    );
+};
 
-export default DetailNavbar
+export default DetailNavbar;

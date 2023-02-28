@@ -1,19 +1,19 @@
-import DetailDescription from '@/components/detail/DetailDescription'
-import DetailNavbar from '@/components/detail/DetailNavbar'
-import beautifyPokemonTypeObj from '@/helper/beautifyPokemonTypeObj'
-import { API_URL_POKE, APP_NAME } from '@/helper/constants'
-import useWindowSize from '@/helper/useWindowSize'
-import { Col, Row } from 'antd'
-import { PokemonType } from 'app-types'
-import axios from 'axios'
-import Head from 'next/head'
+import DetailDescription from '@/components/detail/DetailDescription';
+import DetailNavbar from '@/components/detail/DetailNavbar';
+import beautifyPokemonTypeObj from '@/helper/beautifyPokemonTypeObj';
+import { API_URL_POKE, APP_NAME } from '@/helper/constants';
+import useWindowSize from '@/helper/useWindowSize';
+import { Col, Row } from 'antd';
+import { PokemonType } from 'app-types';
+import axios from 'axios';
+import Head from 'next/head';
 
 type DetailProps = {
-    pokemon: PokemonType
-}
+    pokemon: PokemonType;
+};
 
 export default function Detail({ pokemon }: DetailProps) {
-    const windowSize = useWindowSize()
+    const windowSize = useWindowSize();
 
     return (
         <>
@@ -26,7 +26,7 @@ export default function Detail({ pokemon }: DetailProps) {
             <main>
                 <Row justify="center">
                     <Col style={{ width: windowSize.width >= 800 ? 800 : '100vw' }}>
-                        <Row justify='center' gutter={[0, 18]}>
+                        <Row justify="center" gutter={[0, 18]}>
                             <Col span={24}>
                                 <DetailNavbar />
                             </Col>
@@ -38,25 +38,27 @@ export default function Detail({ pokemon }: DetailProps) {
                 </Row>
             </main>
         </>
-    )
+    );
 }
 
 export async function getServerSideProps(context: any) {
-    const { params: { id } } = context
+    const {
+        params: { id },
+    } = context;
 
     try {
-        const baseUrl = `${API_URL_POKE}pokemon/${id}`
+        const baseUrl = `${API_URL_POKE}pokemon/${id}`;
         const { data } = await axios.get(baseUrl);
 
         return {
             props: {
                 pokemon: beautifyPokemonTypeObj(data),
-            }
-        }
+            },
+        };
     } catch (error) {
         console.error(error);
         return {
-            props: {}
-        }
+            props: {},
+        };
     }
 }

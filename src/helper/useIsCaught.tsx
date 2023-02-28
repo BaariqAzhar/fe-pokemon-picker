@@ -1,23 +1,23 @@
-import { pokemonsTable } from "database.config";
-import { useEffect, useState } from "react";
+import { pokemonsTable } from 'database.config';
+import { useEffect, useState } from 'react';
 
 const useIsCaught = (id: number) => {
-    const [isCaught, setIsCaught] = useState(false)
+    const [isCaught, setIsCaught] = useState(false);
 
     const checkIsCaught = async () => {
         const res = await pokemonsTable.where('id').equals(id).toArray();
         if (res.length > 0) {
-            setIsCaught(true)
+            setIsCaught(true);
         } else {
-            setIsCaught(false)
+            setIsCaught(false);
         }
-    }
+    };
 
     useEffect(() => {
         checkIsCaught();
-    }, [id])
+    }, [id]);
 
-    return { isCaught, checkIsCaught }
-}
+    return { isCaught, checkIsCaught };
+};
 
-export default useIsCaught
+export default useIsCaught;

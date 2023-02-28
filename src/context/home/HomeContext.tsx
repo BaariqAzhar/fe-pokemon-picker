@@ -1,8 +1,8 @@
-import { createContext, Dispatch } from "react";
+import { createContext, Dispatch } from 'react';
 
 export const SORT_TYPE = {
-    ASCENDING: "ASCENDING",
-    DESCENDING: "DESCENDING",
+    ASCENDING: 'ASCENDING',
+    DESCENDING: 'DESCENDING',
 };
 
 export const initialState = {
@@ -13,17 +13,17 @@ export const initialState = {
     },
     pokemonType: {
         data: [],
-        isLoading: false
+        isLoading: false,
     },
     sort: SORT_TYPE.ASCENDING,
     type: [],
     search: '',
-}
+};
 
 const initial = {
     state: initialState,
-    dispatcher: () => null
-}
+    dispatcher: () => null,
+};
 
 const HomeContext = createContext<any>(initial);
 

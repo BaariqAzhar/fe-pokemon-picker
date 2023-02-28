@@ -1,107 +1,106 @@
-import beautifyPokemonTypeObj from "@/helper/beautifyPokemonTypeObj";
-import beautifyWord from "@/helper/beautifyWord";
-import { API_URL_POKE } from "@/helper/constants";
-import { getTypeIdByLink } from "@/helper/getIdgetIdByLink";
-import axios from "axios";
-import { ReactElement, ReactNode, useEffect, useReducer } from "react";
-import HomeContext, { initialState } from "./HomeContext";
-import HomeReducer, { compareAscending, TYPE } from "./HomeReducer";
+import beautifyPokemonTypeObj from '@/helper/beautifyPokemonTypeObj';
+import beautifyWord from '@/helper/beautifyWord';
+import { API_URL_POKE } from '@/helper/constants';
+import { getTypeIdByLink } from '@/helper/getIdgetIdByLink';
+import axios from 'axios';
+import { ReactElement, ReactNode, useEffect, useReducer } from 'react';
+import HomeContext, { initialState } from './HomeContext';
+import HomeReducer, { compareAscending, TYPE } from './HomeReducer';
 
 type HomeContextProviderProps = {
-    children: ReactNode
-}
+    children: ReactNode;
+};
 
 const HomeContextProvider = ({ children }: HomeContextProviderProps): ReactElement => {
-
     const [state, dispatcher] = useReducer(HomeReducer, initialState);
 
     const fetchPokemonList = async () => {
         let baseUrl = `${API_URL_POKE}pokemon/`;
 
         if (state.search) {
-            baseUrl = `${baseUrl}${state.search.toLowerCase()}`
+            baseUrl = `${baseUrl}${state.search.toLowerCase()}`;
             try {
                 dispatcher({
                     type: TYPE.POKEMONLIST_IS_LOADING,
-                    payload: true
-                })
+                    payload: true,
+                });
                 const pokemons = [];
                 const { data } = await axios.get(baseUrl);
 
                 const pokemon = beautifyPokemonTypeObj(data);
-                pokemons.push(pokemon)
-                return pokemons
+                pokemons.push(pokemon);
+                return pokemons;
             } catch (error) {
                 console.error(error);
-                return []
+                return [];
             } finally {
                 dispatcher({
                     type: TYPE.POKEMONLIST_IS_LOADING,
-                    payload: false
-                })
+                    payload: false,
+                });
             }
         } else {
-            baseUrl = `${baseUrl}`
+            baseUrl = `${baseUrl}`;
             try {
                 dispatcher({
                     type: TYPE.POKEMONLIST_IS_LOADING,
-                    payload: true
-                })
+                    payload: true,
+                });
                 const pokemons = [];
-                const { data } = await axios.get(baseUrl)
+                const { data } = await axios.get(baseUrl);
                 const datas = data?.results;
                 for (const key in datas) {
                     const { data } = await axios.get(datas?.[key]?.url);
-                    const pokemon = beautifyPokemonTypeObj(data)
-                    pokemons.push(pokemon)
+                    const pokemon = beautifyPokemonTypeObj(data);
+                    pokemons.push(pokemon);
                 }
-                const ascendingPokemons = pokemons.sort(compareAscending)
+                const ascendingPokemons = pokemons.sort(compareAscending);
                 return ascendingPokemons;
             } catch (error) {
                 console.error(error);
-                return []
+                return [];
             } finally {
                 dispatcher({
                     type: TYPE.POKEMONLIST_IS_LOADING,
-                    payload: false
-                })
+                    payload: false,
+                });
             }
         }
-    }
+    };
 
     const fetchPokemonType = async () => {
-        const baseUrl = `${API_URL_POKE}type`
+        const baseUrl = `${API_URL_POKE}type`;
 
         try {
             const { data } = await axios.get(baseUrl);
             let pokemonTypes = data?.results;
             for (const key in pokemonTypes) {
                 pokemonTypes[key].id = getTypeIdByLink(pokemonTypes?.[key]?.url);
-                pokemonTypes[key].name = beautifyWord(pokemonTypes?.[key]?.name)
+                pokemonTypes[key].name = beautifyWord(pokemonTypes?.[key]?.name);
             }
             return pokemonTypes;
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
         const getPokemonList = async () => {
             const pokemonList = await fetchPokemonList();
             dispatcher({
-                type: TYPE.FIRST,
-                payload: pokemonList
-            })
-        }
+                type: TYPE.FIRST_FETCH_POKEMON_LIST,
+                payload: pokemonList,
+            });
+        };
         getPokemonList();
 
         const getPokemonType = async () => {
             const pokemonTypeData = await fetchPokemonType();
             dispatcher({
                 type: TYPE.FIRST_FETCH_POKEMON_TYPE,
-                payload: pokemonTypeData
-            })
-        }
+                payload: pokemonTypeData,
+            });
+        };
         getPokemonType();
     }, []);
 
@@ -110,13 +109,20 @@ const HomeContextProvider = ({ children }: HomeContextProviderProps): ReactEleme
             const pokemonList = await fetchPokemonList();
             dispatcher({
                 type: TYPE.CHANGE_SEARCH_REFETCH,
-                payload: pokemonList
-            })
-        }
+                payload: pokemonList,
+            });
+        };
         getPokemonList();
-    }, [state.search])
+    }, [state.search]);
+
+    useEffect(() => {
+        dispatcher({
+            type: TYPE.AFTER_CHANGE_SORT_N_TYPE,
+            payload: null,
+        });
+    }, [state.sort, JSON.stringify(state.type)]);
 
     return <HomeContext.Provider value={{ state, dispatcher }}>{children}</HomeContext.Provider>;
-}
+};
 
 export default HomeContextProvider;

@@ -1,20 +1,19 @@
-import beautifyWord from "./beautifyWord"
+import beautifyWord from './beautifyWord';
 
 const beautifyPokemonTypeObj = (data: any) => {
-
-    const tempImages = []
+    const tempImages = [];
     for (const key in data?.sprites) {
         if (typeof data?.sprites?.[key] === 'string') {
-            tempImages.push(data?.sprites?.[key])
+            tempImages.push(data?.sprites?.[key]);
         }
     }
 
-    const tempStats = []
+    const tempStats = [];
     for (const key in data?.stats) {
         tempStats.push({
             name: beautifyWord(data?.stats?.[key]?.stat?.name),
-            point: data?.stats?.[key]?.base_stat
-        })
+            point: data?.stats?.[key]?.base_stat,
+        });
     }
 
     const pokemon = {
@@ -25,10 +24,10 @@ const beautifyPokemonTypeObj = (data: any) => {
         type: data?.types?.map((item: any) => beautifyWord(item?.type?.name)),
         images: tempImages,
         stats: tempStats,
-        weight: data?.weight
-    }
+        weight: data?.weight,
+    };
 
-    return pokemon
-}
+    return pokemon;
+};
 
-export default beautifyPokemonTypeObj
+export default beautifyPokemonTypeObj;
