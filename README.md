@@ -2,11 +2,6 @@
 
 #### Frontend application to search and collect pokemons from Pokeapi.co.
 
-## Gif
-
-![alt text](https://github.com/BaariqAzhar/fe-pokemon-picker/blob/main/documentation/img/catching.gif?raw=true)
-sc: documentation/img/catching.gif
-
 ## Features
 
 In this application “Pokemon Picker” have some features, such as
@@ -18,6 +13,12 @@ In this application “Pokemon Picker” have some features, such as
 -   Release pokemon
 -   Select avatar
 -   Explained on Tutorials (my collection > 3 dot icon )
+
+### Example
+
+How to catch & release the pokemon
+sc: documentation/img/catching.gif
+![alt text](https://github.com/BaariqAzhar/fe-pokemon-picker/blob/main/documentation/img/catching.gif?raw=true)
 
 ## Result
 
@@ -45,6 +46,12 @@ Go to the project directory
 cd (folder name)
 ```
 
+Install depedencies
+
+```bash
+npm i
+```
+
 Run NextJs project
 
 ```bash
@@ -52,6 +59,15 @@ npm run dev
 ```
 
 Finally your Pokemon Picker has been launch 🚀🚀🚀
+
+## Run unit testing
+
+
+Start check test case
+
+```bash
+npm run dev
+```
 
 ## Tech stack
 

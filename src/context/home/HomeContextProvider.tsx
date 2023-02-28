@@ -1,10 +1,9 @@
 import beautifyPokemonTypeObj from "@/helper/beautifyPokemonTypeObj";
 import beautifyWord from "@/helper/beautifyWord";
-import { API_LIMIT_POKE_LIST, API_URL_POKE } from "@/helper/constants";
-import getIdByLink, { getTypeIdByLink } from "@/helper/getIdgetIdByLink";
-import { PokemonType } from "app-types";
+import { API_URL_POKE } from "@/helper/constants";
+import { getTypeIdByLink } from "@/helper/getIdgetIdByLink";
 import axios from "axios";
-import { ReactElement, ReactNode, useEffect, useReducer } from "react"
+import { ReactElement, ReactNode, useEffect, useReducer } from "react";
 import HomeContext, { initialState } from "./HomeContext";
 import HomeReducer, { compareAscending, TYPE } from "./HomeReducer";
 
