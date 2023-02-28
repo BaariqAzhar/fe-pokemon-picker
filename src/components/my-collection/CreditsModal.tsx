@@ -7,7 +7,6 @@ type CreditsModalProps = {
 };
 
 const CreditsModal = ({ showCredits, handleShowCredits }: CreditsModalProps) => {
-    // showCredits, setShowCredits
 
     return (
         <Modal title="Credits" open={showCredits} onCancel={handleShowCredits} footer={null}>

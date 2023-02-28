@@ -76,51 +76,6 @@ const HomeReducer = (prevState: any, action: ActionType) => {
                     isLoading: payload,
                 },
             };
-        // case TYPE.CHANGE_SORT: {
-        //     let tempVisible = [...prevState.pokemonList.default];
-
-        //     if (payload === SORT_TYPE.ASCENDING) {
-        //         tempVisible = tempVisible.sort(compareAscending);
-        //     } else if (payload === SORT_TYPE.DESCENDING) {
-        //         tempVisible = tempVisible.sort(compareDescending);
-        //     }
-
-        //     return {
-        //         ...prevState,
-        //         pokemonList: {
-        //             ...prevState.pokemonList,
-        //             visible: tempVisible
-        //         },
-        //         sort: payload,
-        //     }
-        // }
-        // case TYPE.CHANGE_TYPE: {
-        //     if (payload.length === 0) {
-        //         return {
-        //             ...prevState,
-        //             type: payload,
-        //             pokemonList: {
-        //                 ...prevState.pokemonList,
-        //                 visible: prevState.pokemonList.default
-        //             }
-        //         }
-        //     }
-
-        //     let tempVisible = [...prevState.pokemonList.visible];
-
-        //     tempVisible = tempVisible.filter((item) => {
-        //         return item?.type?.some((r: string) => payload.indexOf(r) >= 0)
-        //     })
-
-        //     return {
-        //         ...prevState,
-        //         type: payload,
-        //         pokemonList: {
-        //             ...prevState.pokemonList,
-        //             visible: tempVisible
-        //         }
-        //     }
-        // }
         case TYPE.CHANGE_SORT: {
             return {
                 ...prevState,
