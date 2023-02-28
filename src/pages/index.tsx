@@ -4,9 +4,8 @@ import PokeList from '@/components/home/PokeList'
 import HomeContextProvider from '@/context/home/HomeContextProvider'
 import { APP_NAME } from '@/helper/constants'
 import useWindowSize from '@/helper/useWindowSize'
-import { Col, Grid, Row } from 'antd'
+import { Col, Row } from 'antd'
 import Head from 'next/head'
-import { useEffect } from 'react'
 import styled from 'styled-components'
 
 const HomeHead = () => {
@@ -54,45 +53,20 @@ const HomeForMobile = () => {
 }
 
 export default function Home() {
-  
+  const windowSize = useWindowSize()
 
-  const { lg } = Grid.useBreakpoint();
-
-  if (lg) {
-    return (
-      <>
-        <HomeHead />
-        <main>
-          <HomeContextProvider>
-            <Row>
-              <Col span={24}>
-                <PokeHeader />
-              </Col>
-
-              <div className='content'>
-                <Col span={24}>
-                  <PokeList />
-                </Col>
-              </div>
-
-              <Col span={24}>
-                <PokeFooter />
-              </Col>
-            </Row>
-          </HomeContextProvider>
-        </main>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <HomeHead />
-        <main>
-          <HomeContextProvider>
-            <HomeForMobile />
-          </HomeContextProvider>
-        </main>
-      </>
-    )
-  }
+  return (
+    <>
+      <HomeHead />
+      <main>
+        <HomeContextProvider>
+          <Row justify="center">
+            <Col style={{ width: windowSize.width >= 800 ? 800 : '100vw' }}>
+              <HomeForMobile />
+            </Col>
+          </Row>
+        </HomeContextProvider>
+      </main>
+    </>
+  )
 }

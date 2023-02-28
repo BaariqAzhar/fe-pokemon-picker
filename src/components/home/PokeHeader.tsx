@@ -1,13 +1,13 @@
+import PokeballLogo from '@/assets/img/pokeball-logo.png';
 import HomeContext, { initialState, SORT_TYPE } from "@/context/home/HomeContext";
 import { TYPE } from "@/context/home/HomeReducer";
-import { Button, Card, Col, Grid, Input, Modal, Radio, RadioChangeEvent, Row, Select, Space, Typography } from "antd";
-import { PokemonTypeType } from "app-types";
-import { useContext, useState } from "react";
+import { cssNavbarBoxShadow } from "@/helper/constants";
 import { useDebounce } from "@/helper/useDebounce";
 import { MenuOutlined } from '@ant-design/icons';
-import Image from 'next/image'
-import PokeballLogo from '@/assets/img/pokeball-logo.png'
-import styled from "styled-components";
+import { Button, Card, Col, Input, Modal, Radio, RadioChangeEvent, Row, Select, Space, Typography } from "antd";
+import { PokemonTypeType } from "app-types";
+import Image from 'next/image';
+import { useContext, useState } from "react";
 
 const options = [
     {
@@ -134,7 +134,7 @@ const SortFilterModalForMobile = ({ open, handleIsModalOpen }: SortFilterModalFo
     )
 }
 
-const NavbarForMobile = () => {
+const PokeHeader = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleIsModalOpen = () => {
@@ -143,65 +143,29 @@ const NavbarForMobile = () => {
 
     return (
         <>
-            <NavbarWrapper>
-                <div className="navbar">
-                    <Card bodyStyle={{ padding: 4 }} style={{ background: 'white' }}>
-                        <Row align={"middle"}>
-                            <Col flex="40px">
-                                <Image src={PokeballLogo} alt=""
-                                    style={{ maxWidth: '33px', height: 'auto' }}
-                                />
-                            </Col>
-                            <Col flex="auto">
-                                <SearchPokemon />
-                            </Col>
-                            <Col flex="50px">
-                                <Row justify='center'>
-                                    <Col>
-                                        <Button icon={<MenuOutlined />} onClick={handleIsModalOpen} />
-                                    </Col>
-                                </Row>
+            <Card bodyStyle={{ padding: 4 }} style={{ background: 'white', boxShadow: cssNavbarBoxShadow }}>
+                <Row align={"middle"}>
+                    <Col flex="40px">
+                        <Image src={PokeballLogo} alt=""
+                            style={{ maxWidth: '33px', height: 'auto' }}
+                        />
+                    </Col>
+                    <Col flex="auto">
+                        <SearchPokemon />
+                    </Col>
+                    <Col flex="50px">
+                        <Row justify='center'>
+                            <Col>
+                                <Button icon={<MenuOutlined />} onClick={handleIsModalOpen} />
                             </Col>
                         </Row>
-                    </Card>
-                </div>
-            </NavbarWrapper>
+                    </Col>
+                </Row>
+            </Card>
 
             <SortFilterModalForMobile open={isModalOpen} handleIsModalOpen={handleIsModalOpen} />
         </>
     )
-}
-
-const NavbarWrapper = styled.div`
-    .navbar {
-        position: stiky;
-        top: 0;
-        width: 100%;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    }
-`
-
-const PokeHeader = () => {
-    const { lg } = Grid.useBreakpoint();
-
-    if (lg) {
-        return (
-            <Row gutter={[16, 16]}>
-                <Col span={12}>
-                    <SearchPokemon />
-                </Col>
-                <Col span={6}>
-                    <SortPokemon />
-                </Col>
-                <Col span={6}>
-                    <FilterTypePokemon />
-                </Col>
-            </Row>
-        )
-    } else {
-        return <NavbarForMobile />
-    }
-
 }
 
 export default PokeHeader;

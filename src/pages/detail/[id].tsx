@@ -1,19 +1,19 @@
 import DetailDescription from '@/components/detail/DetailDescription'
 import DetailNavbar from '@/components/detail/DetailNavbar'
 import beautifyPokemonTypeObj from '@/helper/beautifyPokemonTypeObj'
-import beautifyWord from '@/helper/beautifyWord'
 import { API_URL_POKE, APP_NAME } from '@/helper/constants'
+import useWindowSize from '@/helper/useWindowSize'
 import { Col, Row } from 'antd'
 import { PokemonType } from 'app-types'
 import axios from 'axios'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 
 type DetailProps = {
     pokemon: PokemonType
 }
 
 export default function Detail({ pokemon }: DetailProps) {
+    const windowSize = useWindowSize()
 
     return (
         <>
@@ -24,12 +24,16 @@ export default function Detail({ pokemon }: DetailProps) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Row justify='center' gutter={[0, 18]}>
-                    <Col span={24}>
-                        <DetailNavbar />
-                    </Col>
-                    <Col span={24}>
-                        <DetailDescription data={pokemon} />
+                <Row justify="center">
+                    <Col style={{ width: windowSize.width >= 800 ? 800 : '100vw' }}>
+                        <Row justify='center' gutter={[0, 18]}>
+                            <Col span={24}>
+                                <DetailNavbar />
+                            </Col>
+                            <Col span={24}>
+                                <DetailDescription data={pokemon} />
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </main>

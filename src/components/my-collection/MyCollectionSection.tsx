@@ -11,7 +11,7 @@ const MyCollectionSection = () => {
 
     const size = useWindowSize()
 
-    const heightContent = size.height - (140 + 120 + (18 * 2))
+    const heightContent = size.height - (200 + 120 + (18 * 2))
     const ContentWrapper = styled.div`
         height: ${heightContent}px;
         overflow-y: auto;

@@ -1,4 +1,5 @@
 import HomeContext from "@/context/home/HomeContext"
+import { Skeleton } from "antd";
 import { useContext } from "react"
 import PokemonsList from "../global/PokemonList"
 
@@ -8,7 +9,11 @@ const HomePokemonList = () => {
 
     if (pokemonList?.isLoading) {
         return (
-            <>Loading...</>
+            <>
+                {[0, 1, 2, 3].map((item) =>
+                    <Skeleton key={item} active />
+                )}
+            </>
         )
     }
 

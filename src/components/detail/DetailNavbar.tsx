@@ -1,9 +1,7 @@
-import { Button, Card, Col, Row, Typography } from "antd"
-import { PokemonType } from "app-types"
-import { useRouter } from 'next/router'
-import styled from "styled-components"
-import { LeftOutlined } from '@ant-design/icons'
 import { cssNavbarBoxShadow } from '@/helper/constants'
+import { LeftOutlined } from '@ant-design/icons'
+import { Button, Card, Col, Row, Typography } from "antd"
+import { useRouter } from 'next/router'
 
 
 const DetailNavbar = () => {
@@ -19,7 +17,7 @@ const DetailNavbar = () => {
             boxShadow: cssNavbarBoxShadow
         }}>
             <Row gutter={[25, 0]}>
-                <Col span={8}>
+                <Col xs={8} sm={8} md={8} lg={4} xl={4}>
                     <Button onClick={onClick} block icon={<LeftOutlined />}>
                         Back
                     </Button>
