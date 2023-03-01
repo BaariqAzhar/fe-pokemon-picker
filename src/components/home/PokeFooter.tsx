@@ -41,23 +41,27 @@ const PokeFooter = (): ReactElement => {
                 options={[
                     {
                         label: (
-                            <Row>
-                                <Col span={24}>
-                                    <HomeOutlined />
-                                </Col>
-                                <Col span={24}>Home</Col>
-                            </Row>
+                            <div id='home_tab_button'>
+                                <Row>
+                                    <Col span={24}>
+                                        <HomeOutlined />
+                                    </Col>
+                                    <Col span={24}>Home</Col>
+                                </Row>
+                            </div>
                         ),
                         value: 'home',
                     },
                     {
                         label: (
-                            <Row>
-                                <Col span={24}>
-                                    <FolderOpenOutlined />
-                                </Col>
-                                <Col span={24}>My Collection</Col>
-                            </Row>
+                            <div id='my_collection_tab_button'>
+                                <Row>
+                                    <Col span={24}>
+                                        <FolderOpenOutlined />
+                                    </Col>
+                                    <Col span={24}>My Collection</Col>
+                                </Row>
+                            </div>
                         ),
                         value: 'my-collection',
                     },

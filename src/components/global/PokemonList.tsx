@@ -24,7 +24,7 @@ const PokemonItem = ({ data }: PokemonItemType) => {
     };
 
     return (
-        <>
+        <div className="pokemon_item">
             <Row gutter={[8, 0]}>
                 <Col span={5}>
                     <Row justify={'end'}>
@@ -66,7 +66,7 @@ const PokemonItem = ({ data }: PokemonItemType) => {
                         <Col span={24}>
                             <Row justify="center">
                                 <Col>
-                                    <Button type="link" onClick={onClickGoToDetail}>
+                                    <Button className='detail_button' type="link" onClick={onClickGoToDetail}>
                                         Detail <RightOutlined />{' '}
                                     </Button>
                                 </Col>
@@ -76,7 +76,7 @@ const PokemonItem = ({ data }: PokemonItemType) => {
                 </Col>
             </Row>
             <Divider />
-        </>
+        </div>
     );
 };
 

@@ -1,13 +1,12 @@
 import fallbackImg from '@/assets/img/fallbackImg';
+import PokeballIcon from '@/assets/img/pokeball-icon.png';
+import PokeballMonochromeIcon from '@/assets/img/pokeball-monochrome-icon.png';
 import { cssCardBoxShadow, IMAGE_URL_POKE } from '@/helper/constants';
+import useIsCaught from '@/helper/useIsCaught';
 import { Button, Card, Col, Image, Row, Typography } from 'antd';
 import { PokemonType } from 'app-types';
 import { pokemonsTable } from 'database.config';
-import { useEffect, useState } from 'react';
 import NextImg from 'next/image';
-import PokeballIcon from '@/assets/img/pokeball-icon.png';
-import PokeballMonochromeIcon from '@/assets/img/pokeball-monochrome-icon.png';
-import useIsCaught from '@/helper/useIsCaught';
 
 type DetailDescriptionProps = {
     data: PokemonType;
@@ -85,21 +84,31 @@ const DetailDescription = ({ data }: DetailDescriptionProps) => {
                                     <Typography.Text>🎒 My Collection: {isCaught ? <>Yes </> : 'No'}</Typography.Text>
                                 </Col>
                                 <Col span={24}>
-                                    {isCaught ? (
-                                        <Button onClick={onClickRelease}>Release the pokemon</Button>
-                                    ) : (
-                                        <Button type="primary" onClick={onClickCatch}>
-                                            Catch the pokemon
-                                        </Button>
-                                    )}
+                                    <div className='catch_release_button'>
+                                        {isCaught ? (
+                                            <Button
+                                                // className='catch_release_button' 
+                                                className='release_button' onClick={onClickRelease}>Release the pokemon</Button>
+                                        ) : (
+                                            <Button
+                                                // className='catch_release_button' 
+                                                className='catch_button' type="primary" onClick={onClickCatch}>
+                                                Catch the pokemon
+                                            </Button>
+                                        )}
+                                    </div>
                                 </Col>
                             </Row>
                         </Col>
                         <Col span={4}>
                             {isCaught ? (
-                                <NextImg style={{ width: 50, height: 'auto' }} alt="" src={PokeballIcon} />
+                                <div className='caught_img'>
+                                    <NextImg style={{ width: 50, height: 'auto' }} alt="" src={PokeballIcon} />
+                                </div>
                             ) : (
-                                <NextImg style={{ width: 50, height: 'auto' }} alt="" src={PokeballMonochromeIcon} />
+                                <div className='not_caught_img'>
+                                    <NextImg style={{ width: 50, height: 'auto' }} alt="" src={PokeballMonochromeIcon} />
+                                </div>
                             )}
                         </Col>
                     </Row>

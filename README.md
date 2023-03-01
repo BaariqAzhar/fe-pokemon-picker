@@ -1,6 +1,6 @@
 # Pokemon Picker 🎒
 
-#### Frontend application to search and collect pokemons from Pokeapi.co.
+#### Frontend application to search and collect pokemons from Pokeapi.co
 
 ## Features
 
@@ -17,7 +17,7 @@ In this application “Pokemon Picker” have some features, such as
 ### Example
 
 How to catch & release the pokemon
-sc: documentation/img/catching.gif
+(sc: documentation/img/catching.gif)
 ![alt text](https://github.com/BaariqAzhar/fe-pokemon-picker/blob/main/documentation/img/catching.gif?raw=true)
 
 ## Result
@@ -68,6 +68,14 @@ Start check test case
 npm run dev
 ```
 
+## Run Integration testing
+
+Start check
+
+```bash
+npm run cypress open
+```
+
 ## Tech stack
 
 ### Frontend
@@ -81,6 +89,7 @@ npm run dev
 -   axios
 -   dexie js (connect to browser DB)
 -   jest
+-   cypress
 -   etc
 
 ### Browser Database
@@ -99,10 +108,11 @@ npm run dev
 
 ## Improvement
 
-With all my lack. Because of the limited time. So there are many features that should be improved in the next progress. Such as:
+With all my lack skill and limited time. So there are many features that should be improved in the next progress. Such as:
 
 -   Offline handler
 -   More unit testing
+-   More integration testing (E2E)
 -   Etc
 
 ## Author

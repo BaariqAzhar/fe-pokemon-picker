@@ -9,8 +9,19 @@
         "lint": "next lint",
         "test": "jest --watch",
         "test:ci": "jest --ci",
+        "cypress": "cypress",
+        "see-cy-coverage": "open ./cypress-coverage/lcov-report/index.html",
         "format": "prettier --check --ignore-path .gitignore .",
         "format:fix": "prettier --write --ignore-path .gitignore ."
+    },
+    "nyc": {
+        "extends": "./.nycrc.json",
+        "report-dir": "cypress-coverage",
+        "reporter": [
+            "json",
+            "lcov",
+            "text-summary"
+        ]
     },
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.5",
@@ -35,7 +46,13 @@
         "typescript": "4.9.5"
     },
     "devDependencies": {
+        "@cypress/browserify-preprocessor": "^3.0.2",
+        "@cypress/code-coverage": "^3.10.0",
+        "@testing-library/cypress": "^9.0.0",
         "@types/styled-components": "^5.1.26",
+        "@types/testing-library__cypress": "^5.0.9",
+        "cypress": "^12.7.0",
+        "nyc": "^15.1.0",
         "prettier": "^2.8.4"
     }
 }

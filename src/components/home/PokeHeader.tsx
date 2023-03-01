@@ -95,16 +95,18 @@ type SortFilterModalForMobileProps = {
 
 const SortFilterModalForMobile = ({ open, handleIsModalOpen }: SortFilterModalForMobileProps) => {
     return (
-        <Modal title="Sort & Filter Type" open={open} onCancel={handleIsModalOpen} footer={null}>
-            <Row style={{ marginTop: 30 }} gutter={[0, 20]}>
-                <Col>
-                    <SortPokemon />
-                </Col>
-                <Col>
-                    <FilterTypePokemon />
-                </Col>
-            </Row>
-        </Modal>
+        <div id="sort_filter_modal">
+            <Modal title="Sort & Filter Type" open={open} onCancel={handleIsModalOpen} footer={null}>
+                <Row style={{ marginTop: 30 }} gutter={[0, 20]}>
+                    <Col>
+                        <SortPokemon />
+                    </Col>
+                    <Col>
+                        <FilterTypePokemon />
+                    </Col>
+                </Row>
+            </Modal>
+        </div>
     );
 };
 
@@ -116,7 +118,7 @@ const PokeHeader = () => {
     };
 
     return (
-        <>
+        <div id='home_navbar'>
             <Card bodyStyle={{ padding: 4 }} style={{ background: 'white', boxShadow: cssNavbarBoxShadow }}>
                 <Row align={'middle'}>
                     <Col flex="40px">
@@ -128,7 +130,7 @@ const PokeHeader = () => {
                     <Col flex="50px">
                         <Row justify="center">
                             <Col>
-                                <Button icon={<MenuOutlined />} onClick={handleIsModalOpen} />
+                                <Button id='sort_filter_button' icon={<MenuOutlined />} onClick={handleIsModalOpen} />
                             </Col>
                         </Row>
                     </Col>
@@ -136,7 +138,7 @@ const PokeHeader = () => {
             </Card>
 
             <SortFilterModalForMobile open={isModalOpen} handleIsModalOpen={handleIsModalOpen} />
-        </>
+        </div>
     );
 };
 
