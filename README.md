@@ -17,8 +17,9 @@ In this application “Pokemon Picker” have some features, such as
 ### Example
 
 How to catch & release the pokemon
-(sc: documentation/img/catching.gif)
-![alt text](https://github.com/BaariqAzhar/fe-pokemon-picker/blob/main/documentation/img/catching.gif?raw=true)
+
+-   (sc: documentation/img/catching.gif)
+    ![alt text](https://github.com/BaariqAzhar/fe-pokemon-picker/blob/main/documentation/img/catching.gif?raw=true)
 
 ## Result
 
@@ -65,7 +66,7 @@ Finally your Pokemon Picker has been launch 🚀🚀🚀
 Start check test case
 
 ```bash
-npm run dev
+npm run test
 ```
 
 ## Run Integration testing
